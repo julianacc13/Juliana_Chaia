@@ -1,46 +1,103 @@
 <!--Comentários de alteração
-A parte do confrimar senha foi excluída
+Essa página é a correta, eu modifiquei tudo.
+
+Na parte do script javascript temos a função validar cadastro para que veja se todos os itens foram preenchidos, se não ele emite um sinal de alerta.
+
+Nesta página deixei tudo junto, o css e o javascript.
 
 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset= "UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Página de Cadastro</title>
-</head>
-<body style="background-color: rgb(180, 189, 197)">
-<div class="container">
-    <h1>Faça seu cadastro!</h1><br>
-        <form>
-                    <p class="texto-grande">
-                    <label class="label" for="text"> <b>Nome Completo: </b></label>
-                    <input type="text" id="name" name="name">
-                    <p class="texto-grande">
-                    <label class="label" for="text"><b>E-Mail: </b></label>
-                    <input type="text" id="name" name="name">
-                    <p class="texto-grande">
-                    <label class="label" for="nome"> <b>Telefone: </b></label>
-                    <input type="text" id="nome" name="nome">
-                    </p>
-                    <p class="texto-grande">
-                    <label class="label" for="senha"><b>Senha: </b></label>
-                    <input type="password" id="senha" name="senha">
-                    </p>
-                        <nav>
-                            
-                        <a href="login.html" style="text-decoration: none;">Já tem uma conta? Faça seu Login!</a>
-                        <br><br>
-                        </nav>
-            </form>
-            
-            <a href="relatório.html"><button class="botao"><b>Entrar</button></b></a>
-            <a href="cadastro.html"><button class="botao"><b>Cadastrar</button></b></a>
-    </div>
-    </body>
-    <script src="script.js"></script>
-    </html>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
 
-                  
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(245, 237, 237, 0.1);
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #b582d1;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #784a7d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="cadastroContainer">
+        <h2>Cadastro</h2>
+
+        <form id="cadastroForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <button type="button" onclick="validarCadastro()">Cadastrar</button>
+        </form>
+    </div>
+
+    <script>
+        function validarCadastro() {
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
+
+            function validarCampos(nome, email, senha) {
+                if (nome === "" || email === "" || senha === "") {
+                    return false;
+                }
+                return true;
+            }
+
+            while (!validarCampos(nome, email, senha)) {
+                alert("Todos os campos devem ser preenchidos.");
+                email = prompt("Por favor, insira um email válido:");
+            }
+
+            alert("Cadastro realizado com sucesso!\nNome: " + nome + "\nEmail: " + email);
+
+            document.getElementById("cadastroContainer").style.backgroundColor = "#DFF2BF";
+        }
+    </script>
+
+</body>
+</html>
